@@ -1,4 +1,4 @@
-package unit;
+package tests.unit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 

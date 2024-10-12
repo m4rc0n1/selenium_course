@@ -1,4 +1,4 @@
-package unit;
+package tests.unit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.*;
@@ -68,7 +68,6 @@ public class C2_herokuTest {
 
     @AfterAll
     public static void tearDownAll(){
-
         System.out.println("Heroku test have been finished");
     }
 }
