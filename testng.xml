@@ -1,0 +1,49 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationExercise" parallel="tests" thread-count="4">
+    <listeners>
+        <listener class-name="utils.RetryListener" />
+        <listener class-name="utils.TestListener" />
+    </listeners>
+
+    <test name="SanityAndRegressionTests">
+        <groups>
+            <run>
+                <include name="sanity" />
+                <include name="regression" />
+                <exclude name="skippedTests" />
+            </run>
+        </groups>
+
+        <classes>
+            <class name="utils.setup.GroupTestSetup" />
+            <class name="tests.automationExercise.integration.LoginTest">
+                <methods>
+                    <include name="failedTest" />
+                    <exclude name="loginTest" />
+                </methods>
+            </class>
+            <class name="tests.automationExercise.sanity.SanityExampleTest" />
+            <class name="tests.automationExercise.e2e.PurchaseProductTest" />
+            <class name="tests.automationExercise.integration.AddProductToCartTest" />
+            <class name="tests.automationExercise.integration.RegisterNewUserTest" />
+            <class name="tests.automationExercise.integration.CartTest" />
+        </classes>
+    </test>
+    <test name="SmokeTests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="utils.setup.GroupTestSetup" />
+            <class name="tests.automationExercise.smoke.SmokeExampleTest" />
+            <class name="tests.automationExercise.sanity.SanityExampleTest" />
+            <class name="tests.automationExercise.e2e.PurchaseProductTest" />
+            <class name="tests.automationExercise.integration.AddProductToCartTest" />
+            <class name="tests.automationExercise.integration.RegisterNewUserTest" />
+            <class name="tests.automationExercise.integration.CartTest" />
+            <class name="tests.automationExercise.integration.LoginTest" />
+        </classes>
+    </test>
+</suite>

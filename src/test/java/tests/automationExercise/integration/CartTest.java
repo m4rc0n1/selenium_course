@@ -1,37 +1,17 @@
 package tests.automationExercise.integration;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.cart.CartPage;
-import pages.home.HomePage;
-
+import utils.setup.BaseTest;
 import java.time.Duration;
 
-public class CartTest {
-    WebDriver driver;
-    @BeforeMethod
-    public void setup(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.get("https://automationexercise.com/");
-        driver.findElement(By.xpath("//p[text()='Consent']")).click();
-    }
-
-    @Test
+public class CartTest extends BaseTest {
+    @Test(groups = {"regression"})
     public void emptyCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        HomePage homePage = new HomePage();
-        CartPage cartPage = new CartPage();
 //        Steps
 //        1. User adds product(s)
         homePage.addProductToCart(driver,"7");
@@ -46,9 +26,5 @@ public class CartTest {
         String actualResultText = driver.findElement(By.xpath(cartPage.cartIsEmptyMessageXpath)).getText();
         String expectedResultText = "Cart is empty!";
         Assert.assertEquals(actualResultText,expectedResultText);
-    }
-    @AfterMethod
-    public void tearDown(){
-        driver.quit();
     }
 }
