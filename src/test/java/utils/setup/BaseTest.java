@@ -37,9 +37,6 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setup(String browser){
         System.out.println("Setting up new browser environment");
-//        if(config.getProperty("browser").equals("chrome")){
-//            driver = ChromeDriverConfig.getConfiguratedChromeDriver(downloadPath);
-//        }
         switch(browser.toLowerCase()){
             case "chrome":
                 driver = ChromeDriverConfig.getConfiguratedChromeDriver(downloadPath);
