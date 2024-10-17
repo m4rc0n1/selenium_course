@@ -1,12 +1,16 @@
 package utils.setup;
 
 import com.github.javafaker.Faker;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import pages.cart.CartPage;
 import pages.home.HomePage;
 import pages.loginSignup.LoginSignUpPage;
@@ -28,11 +32,28 @@ public class BaseTest {
     protected WebDriverWait wait;
     protected String downloadPath =  System.getProperty("user.dir")+ "\\downloads\\";
     protected Actions actions;
+
+    @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
-    public void setup(){
+    public void setup(String browser){
         System.out.println("Setting up new browser environment");
-        if(config.getProperty("browser").equals("chrome")){
-            driver = ChromeDriverConfig.getConfiguratedChromeDriver(downloadPath);
+//        if(config.getProperty("browser").equals("chrome")){
+//            driver = ChromeDriverConfig.getConfiguratedChromeDriver(downloadPath);
+//        }
+        switch(browser.toLowerCase()){
+            case "chrome":
+                driver = ChromeDriverConfig.getConfiguratedChromeDriver(downloadPath);
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Browser not supported " + browser);
         }
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         driver.get(config.getProperty("url"));

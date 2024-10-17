@@ -46,4 +46,18 @@
             <class name="tests.automationExercise.integration.LoginTest" />
         </classes>
     </test>
+<!--    CHROME TEST-->
+    <test name="CrossBrowserTestChrome">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="tests.automationExercise.integration.CartTest" />
+        </classes>
+    </test>
+<!--FIREFOX TEST-->
+    <test name="CrossBrowserTestFirefox">
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="tests.automationExercise.integration.AddProductToCartTest" />
+        </classes>
+    </test>
 </suite>
