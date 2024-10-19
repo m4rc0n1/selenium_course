@@ -67,4 +67,9 @@
             <class name="tests.github.api.GithubTests" />
         </classes>
     </test>
+    <test name="GithubApiNegativeTest">
+        <classes>
+            <class name="tests.github.api.NegativeGithubTests" />
+        </classes>
+    </test>
 </suite>
