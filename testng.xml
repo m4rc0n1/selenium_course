@@ -60,4 +60,11 @@
             <class name="tests.automationExercise.integration.AddProductToCartTest" />
         </classes>
     </test>
+
+<!--    GITHUB API TEST-->
+    <test name="GithubApiTest">
+        <classes>
+            <class name="tests.github.api.GithubTests" />
+        </classes>
+    </test>
 </suite>
