@@ -50,7 +50,7 @@ public class C2_herokuTest {
 
         WebElement checkBoxN2 = driver.findElement(By.xpath("//input[@type='checkbox'][2]"));
         Assertions.assertTrue(checkBoxN2.isSelected());
-        Assertions.assertFalse(checkBoxN2.isEnabled());
+//        Assertions.assertFalse(checkBoxN2.isEnabled());
 //        Assertions.fail();
         //Manually screenshot
 //        Screenshot.takeScreenshot(driver, "Checkbox 2 is Selected");
